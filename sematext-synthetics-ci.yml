@@ -5,13 +5,13 @@ inputs:
     description: 'Sematext API key'
     required: true
   app-id:
-    description: 'Sematext app ID'
+    description: 'Sematext App ID'
     required: true
   monitor-id:
-    description: 'Sematext monitor ID'
+    description: 'Sematext Monitor ID'
     required: true
   region:
-    description: 'Sematext region (US or EU)'
+    description: 'Sematext Region (US or EU)'
     required: true
 runs:
   using: 'composite'
