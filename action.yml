@@ -13,9 +13,6 @@ inputs:
   region:
     description: 'Sematext Region (EU or US)'
     required: true
-outputs:
-  result:
-    description: 'Monitor result'
 runs:
   using: composite
   steps:
@@ -51,4 +48,3 @@ runs:
 
         cat results.txt
         if [ $(head -1 results.txt | grep -c 'passed') -ne 1 ]; then exit 1; fi
-        echo "::set-output name=result::$(head -1 results.txt)"
