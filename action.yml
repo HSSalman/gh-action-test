@@ -1,8 +1,8 @@
 name: 'Sematext Synthetics CI'
-description: 'Runs a Sematext Synthetics monitor on a deployment'
+description: 'Runs a Sematext Synthetics monitor on deployment'
 inputs:
   api-key:
-    description: 'Sematext API key'
+    description: 'Sematext API Key'
     required: true
   app-id:
     description: 'Sematext App ID'
@@ -11,19 +11,20 @@ inputs:
     description: 'Sematext Monitor ID'
     required: true
   region:
-    description: 'Sematext Region (US or EU)'
+    description: 'Sematext Region (EU or US)'
     required: true
+outputs:
+  result:
+    description: 'Monitor result'
 runs:
-  using: 'composite'
+  using: composite
   steps:
-    - uses: actions/checkout@v4
     - name: Run Sematext Monitor
       env:
         API_KEY: ${{ inputs.api-key }}
         APP_ID: ${{ inputs.app-id }}
         MONITOR_ID: ${{ inputs.monitor-id }}
         REGION: ${{ inputs.region }}
-      id: run
       run: |
         echo "Running job with the following variables:"
         echo " - APP_ID: ${APP_ID}"
@@ -49,3 +50,4 @@ runs:
 
         cat results.txt
         if [ $(head -1 results.txt | grep -c 'passed') -ne 1 ]; then exit 1; fi
+        echo "::set-output name=result::$(head -1 results.txt)"
