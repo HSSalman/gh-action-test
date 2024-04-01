@@ -18,6 +18,7 @@ outputs:
     description: 'Monitor result'
 runs:
   using: composite
+  shell: bash
   steps:
     - name: Run Sematext Monitor
       env:
