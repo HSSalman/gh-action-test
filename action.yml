@@ -18,9 +18,9 @@ outputs:
     description: 'Monitor result'
 runs:
   using: composite
-  shell: bash
   steps:
     - name: Run Sematext Monitor
+      shell: bash
       env:
         API_KEY: ${{ inputs.api-key }}
         APP_ID: ${{ inputs.app-id }}
